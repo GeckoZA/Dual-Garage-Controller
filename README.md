@@ -11,3 +11,5 @@ Outputs -2 relays to drive the garage doors, 2 relays opto-isolated for AC/DC to
 
 Inputs  -2 terminals for garage closed detection with reed switches 
         -2 Ultrasonic sensors for car detection sensors
+
+<a href="https://www.buymeacoffee.com/tfd0422i" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a
