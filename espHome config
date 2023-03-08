@@ -1,0 +1,88 @@
+text_sensor:
+  - platform: version
+    name: "Garage Controller"
+
+  - platform: wifi_info
+    ip_address:
+      name: Garage Controller
+    ssid:
+      name: Garage Controller
+    bssid:
+      name: Garage Controller
+    
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO32
+      inverted: True
+    name: "Garage Door State 1"
+    device_class: garage_door
+  - platform: gpio
+    pin:
+      number: GPIO33
+      inverted: True
+    name: "Garage Door State 2"
+    device_class: garage_door
+
+switch:
+  - platform: gpio
+    pin: GPIO23
+    id: relay1
+  - platform: template
+    icon: "mdi:arrow-up-down-bold-outline"
+    name: "Garage Door 1"
+    turn_on_action:
+    - switch.turn_on: relay1
+    - delay: 500ms
+    - switch.turn_off: relay1
+
+  - platform: gpio
+    pin: GPIO25
+    id: relay2
+  - platform: template
+    icon: "mdi:arrow-up-down-bold-outline"
+    name: "Garage Door 2"
+    turn_on_action:
+    - switch.turn_on: relay2
+    - delay: 500ms
+    - switch.turn_off: relay2
+
+  - platform: gpio
+    name: "Light 1"
+    pin: GPIO26
+
+  - platform: gpio
+    name: "Light 2"
+    pin: GPIO27
+
+sensor:
+  - platform: ultrasonic
+    trigger_pin: GPIO15
+    echo_pin: GPIO18
+    name: "Ultrasonic Sensor 1"
+    pulse_time: 20us
+    update_interval: 10s
+    timeout: 5m
+
+  - platform: ultrasonic
+    trigger_pin: GPIO5
+    echo_pin: GPIO4
+    name: "Ultrasonic Sensor 2"
+    pulse_time: 20us
+    update_interval: 10s
+    timeout: 5m
+
+##  Sensors with general information.
+##  Uptime sensor.
+  - platform: uptime
+    name: Garage Controller Uptime
+
+##  WiFi Signal sensor.
+  - platform: wifi_signal
+    name: Garage Controller Signal
+    update_interval: 60s
+
+status_led:
+  pin:
+    number: GPIO19
+    inverted: yes
